@@ -143,6 +143,18 @@
     line-height: 1.55;
   }
 
+  h1 {
+    font-size: var(--step-5);
+  }
+
+  h2 {
+    font-size: var(--step-4);
+  }
+
+  h3 {
+    font-size: var(--step-2);
+  }
+
   h1,
   h2 {
     font-family: var(--font-display);
