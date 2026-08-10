@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EngagementModelRouteImport } from './routes/engagement-model'
+import { Route as FlagsRouteImport } from './routes/flags'
 import { Route as GccRouteImport } from './routes/gcc'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as SettingUpInIndiaRouteImport } from './routes/setting-up-in-india'
@@ -49,6 +50,11 @@ const ContactRoute = ContactRouteImport.update({
 const EngagementModelRoute = EngagementModelRouteImport.update({
   id: '/engagement-model',
   path: '/engagement-model',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlagsRoute = FlagsRouteImport.update({
+  id: '/flags',
+  path: '/flags',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GccRoute = GccRouteImport.update({
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/engagement-model': typeof EngagementModelRoute
+  '/flags': typeof FlagsRoute
   '/gcc': typeof GccRoute
   '/insights': typeof InsightsRoute
   '/setting-up-in-india': typeof SettingUpInIndiaRoute
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/engagement-model': typeof EngagementModelRoute
+  '/flags': typeof FlagsRoute
   '/gcc': typeof GccRoute
   '/insights': typeof InsightsRoute
   '/setting-up-in-india': typeof SettingUpInIndiaRoute
@@ -151,6 +159,7 @@ export interface FileRoutesById {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/engagement-model': typeof EngagementModelRoute
+  '/flags': typeof FlagsRoute
   '/gcc': typeof GccRoute
   '/insights': typeof InsightsRoute
   '/setting-up-in-india': typeof SettingUpInIndiaRoute
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/engagement-model'
+    | '/flags'
     | '/gcc'
     | '/insights'
     | '/setting-up-in-india'
@@ -189,6 +199,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/engagement-model'
+    | '/flags'
     | '/gcc'
     | '/insights'
     | '/setting-up-in-india'
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/engagement-model'
+    | '/flags'
     | '/gcc'
     | '/insights'
     | '/setting-up-in-india'
@@ -226,6 +238,7 @@ export interface RootRouteChildren {
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   EngagementModelRoute: typeof EngagementModelRoute
+  FlagsRoute: typeof FlagsRoute
   GccRoute: typeof GccRoute
   InsightsRoute: typeof InsightsRoute
   SettingUpInIndiaRoute: typeof SettingUpInIndiaRoute
@@ -274,6 +287,13 @@ declare module '@tanstack/react-router' {
       path: '/engagement-model'
       fullPath: '/engagement-model'
       preLoaderRoute: typeof EngagementModelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flags': {
+      id: '/flags'
+      path: '/flags'
+      fullPath: '/flags'
+      preLoaderRoute: typeof FlagsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gcc': {
@@ -362,6 +382,7 @@ const rootRouteChildren: RootRouteChildren = {
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   EngagementModelRoute: EngagementModelRoute,
+  FlagsRoute: FlagsRoute,
   GccRoute: GccRoute,
   InsightsRoute: InsightsRoute,
   SettingUpInIndiaRoute: SettingUpInIndiaRoute,
