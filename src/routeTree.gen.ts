@@ -16,12 +16,12 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EngagementModelRouteImport } from './routes/engagement-model'
 import { Route as GccRouteImport } from './routes/gcc'
 import { Route as InsightsRouteImport } from './routes/insights'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SettingUpInIndiaRouteImport } from './routes/setting-up-in-india'
-import { Route as WhoWeServeRouteImport } from './routes/who-we-serve'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesGrowRouteImport } from './routes/services.grow'
 import { Route as ServicesManageRouteImport } from './routes/services.manage'
 import { Route as ServicesSetupRouteImport } from './routes/services.setup'
+import { Route as WhoWeServeIndexRouteImport } from './routes/who-we-serve.index'
 import { Route as WhoWeServeEnteringIndiaRouteImport } from './routes/who-we-serve.entering-india'
 import { Route as WhoWeServeFundedStartupsRouteImport } from './routes/who-we-serve.funded-startups'
 import { Route as WhoWeServeMidMarketRouteImport } from './routes/who-we-serve.mid-market'
@@ -61,51 +61,51 @@ const InsightsRoute = InsightsRouteImport.update({
   path: '/insights',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SettingUpInIndiaRoute = SettingUpInIndiaRouteImport.update({
   id: '/setting-up-in-india',
   path: '/setting-up-in-india',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WhoWeServeRoute = WhoWeServeRouteImport.update({
-  id: '/who-we-serve',
-  path: '/who-we-serve',
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesGrowRoute = ServicesGrowRouteImport.update({
-  id: '/grow',
-  path: '/grow',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/grow',
+  path: '/services/grow',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesManageRoute = ServicesManageRouteImport.update({
-  id: '/manage',
-  path: '/manage',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/manage',
+  path: '/services/manage',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSetupRoute = ServicesSetupRouteImport.update({
-  id: '/setup',
-  path: '/setup',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/setup',
+  path: '/services/setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhoWeServeIndexRoute = WhoWeServeIndexRouteImport.update({
+  id: '/who-we-serve/',
+  path: '/who-we-serve/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WhoWeServeEnteringIndiaRoute = WhoWeServeEnteringIndiaRouteImport.update({
-  id: '/entering-india',
-  path: '/entering-india',
-  getParentRoute: () => WhoWeServeRoute,
+  id: '/who-we-serve/entering-india',
+  path: '/who-we-serve/entering-india',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WhoWeServeFundedStartupsRoute =
   WhoWeServeFundedStartupsRouteImport.update({
-    id: '/funded-startups',
-    path: '/funded-startups',
-    getParentRoute: () => WhoWeServeRoute,
+    id: '/who-we-serve/funded-startups',
+    path: '/who-we-serve/funded-startups',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const WhoWeServeMidMarketRoute = WhoWeServeMidMarketRouteImport.update({
-  id: '/mid-market',
-  path: '/mid-market',
-  getParentRoute: () => WhoWeServeRoute,
+  id: '/who-we-serve/mid-market',
+  path: '/who-we-serve/mid-market',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -116,15 +116,15 @@ export interface FileRoutesByFullPath {
   '/engagement-model': typeof EngagementModelRoute
   '/gcc': typeof GccRoute
   '/insights': typeof InsightsRoute
-  '/services': typeof ServicesRouteWithChildren
   '/setting-up-in-india': typeof SettingUpInIndiaRoute
-  '/who-we-serve': typeof WhoWeServeRouteWithChildren
   '/services/grow': typeof ServicesGrowRoute
   '/services/manage': typeof ServicesManageRoute
   '/services/setup': typeof ServicesSetupRoute
   '/who-we-serve/entering-india': typeof WhoWeServeEnteringIndiaRoute
   '/who-we-serve/funded-startups': typeof WhoWeServeFundedStartupsRoute
   '/who-we-serve/mid-market': typeof WhoWeServeMidMarketRoute
+  '/services/': typeof ServicesIndexRoute
+  '/who-we-serve/': typeof WhoWeServeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,15 +134,15 @@ export interface FileRoutesByTo {
   '/engagement-model': typeof EngagementModelRoute
   '/gcc': typeof GccRoute
   '/insights': typeof InsightsRoute
-  '/services': typeof ServicesRouteWithChildren
   '/setting-up-in-india': typeof SettingUpInIndiaRoute
-  '/who-we-serve': typeof WhoWeServeRouteWithChildren
   '/services/grow': typeof ServicesGrowRoute
   '/services/manage': typeof ServicesManageRoute
   '/services/setup': typeof ServicesSetupRoute
   '/who-we-serve/entering-india': typeof WhoWeServeEnteringIndiaRoute
   '/who-we-serve/funded-startups': typeof WhoWeServeFundedStartupsRoute
   '/who-we-serve/mid-market': typeof WhoWeServeMidMarketRoute
+  '/services': typeof ServicesIndexRoute
+  '/who-we-serve': typeof WhoWeServeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -153,15 +153,15 @@ export interface FileRoutesById {
   '/engagement-model': typeof EngagementModelRoute
   '/gcc': typeof GccRoute
   '/insights': typeof InsightsRoute
-  '/services': typeof ServicesRouteWithChildren
   '/setting-up-in-india': typeof SettingUpInIndiaRoute
-  '/who-we-serve': typeof WhoWeServeRouteWithChildren
   '/services/grow': typeof ServicesGrowRoute
   '/services/manage': typeof ServicesManageRoute
   '/services/setup': typeof ServicesSetupRoute
   '/who-we-serve/entering-india': typeof WhoWeServeEnteringIndiaRoute
   '/who-we-serve/funded-startups': typeof WhoWeServeFundedStartupsRoute
   '/who-we-serve/mid-market': typeof WhoWeServeMidMarketRoute
+  '/services/': typeof ServicesIndexRoute
+  '/who-we-serve/': typeof WhoWeServeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -173,15 +173,15 @@ export interface FileRouteTypes {
     | '/engagement-model'
     | '/gcc'
     | '/insights'
-    | '/services'
     | '/setting-up-in-india'
-    | '/who-we-serve'
     | '/services/grow'
     | '/services/manage'
     | '/services/setup'
     | '/who-we-serve/entering-india'
     | '/who-we-serve/funded-startups'
     | '/who-we-serve/mid-market'
+    | '/services/'
+    | '/who-we-serve/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -191,15 +191,15 @@ export interface FileRouteTypes {
     | '/engagement-model'
     | '/gcc'
     | '/insights'
-    | '/services'
     | '/setting-up-in-india'
-    | '/who-we-serve'
     | '/services/grow'
     | '/services/manage'
     | '/services/setup'
     | '/who-we-serve/entering-india'
     | '/who-we-serve/funded-startups'
     | '/who-we-serve/mid-market'
+    | '/services'
+    | '/who-we-serve'
   id:
     | '__root__'
     | '/'
@@ -209,15 +209,15 @@ export interface FileRouteTypes {
     | '/engagement-model'
     | '/gcc'
     | '/insights'
-    | '/services'
     | '/setting-up-in-india'
-    | '/who-we-serve'
     | '/services/grow'
     | '/services/manage'
     | '/services/setup'
     | '/who-we-serve/entering-india'
     | '/who-we-serve/funded-startups'
     | '/who-we-serve/mid-market'
+    | '/services/'
+    | '/who-we-serve/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -228,9 +228,15 @@ export interface RootRouteChildren {
   EngagementModelRoute: typeof EngagementModelRoute
   GccRoute: typeof GccRoute
   InsightsRoute: typeof InsightsRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
   SettingUpInIndiaRoute: typeof SettingUpInIndiaRoute
-  WhoWeServeRoute: typeof WhoWeServeRouteWithChildren
+  ServicesGrowRoute: typeof ServicesGrowRoute
+  ServicesManageRoute: typeof ServicesManageRoute
+  ServicesSetupRoute: typeof ServicesSetupRoute
+  WhoWeServeEnteringIndiaRoute: typeof WhoWeServeEnteringIndiaRoute
+  WhoWeServeFundedStartupsRoute: typeof WhoWeServeFundedStartupsRoute
+  WhoWeServeMidMarketRoute: typeof WhoWeServeMidMarketRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
+  WhoWeServeIndexRoute: typeof WhoWeServeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -284,13 +290,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/setting-up-in-india': {
       id: '/setting-up-in-india'
       path: '/setting-up-in-india'
@@ -298,89 +297,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingUpInIndiaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/who-we-serve': {
-      id: '/who-we-serve'
-      path: '/who-we-serve'
-      fullPath: '/who-we-serve'
-      preLoaderRoute: typeof WhoWeServeRouteImport
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/grow': {
       id: '/services/grow'
-      path: '/grow'
+      path: '/services/grow'
       fullPath: '/services/grow'
       preLoaderRoute: typeof ServicesGrowRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/manage': {
       id: '/services/manage'
-      path: '/manage'
+      path: '/services/manage'
       fullPath: '/services/manage'
       preLoaderRoute: typeof ServicesManageRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/setup': {
       id: '/services/setup'
-      path: '/setup'
+      path: '/services/setup'
       fullPath: '/services/setup'
       preLoaderRoute: typeof ServicesSetupRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
+    }
+    '/who-we-serve/': {
+      id: '/who-we-serve/'
+      path: '/who-we-serve'
+      fullPath: '/who-we-serve/'
+      preLoaderRoute: typeof WhoWeServeIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/who-we-serve/entering-india': {
       id: '/who-we-serve/entering-india'
-      path: '/entering-india'
+      path: '/who-we-serve/entering-india'
       fullPath: '/who-we-serve/entering-india'
       preLoaderRoute: typeof WhoWeServeEnteringIndiaRouteImport
-      parentRoute: typeof WhoWeServeRoute
+      parentRoute: typeof rootRouteImport
     }
     '/who-we-serve/funded-startups': {
       id: '/who-we-serve/funded-startups'
-      path: '/funded-startups'
+      path: '/who-we-serve/funded-startups'
       fullPath: '/who-we-serve/funded-startups'
       preLoaderRoute: typeof WhoWeServeFundedStartupsRouteImport
-      parentRoute: typeof WhoWeServeRoute
+      parentRoute: typeof rootRouteImport
     }
     '/who-we-serve/mid-market': {
       id: '/who-we-serve/mid-market'
-      path: '/mid-market'
+      path: '/who-we-serve/mid-market'
       fullPath: '/who-we-serve/mid-market'
       preLoaderRoute: typeof WhoWeServeMidMarketRouteImport
-      parentRoute: typeof WhoWeServeRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface ServicesRouteChildren {
-  ServicesGrowRoute: typeof ServicesGrowRoute
-  ServicesManageRoute: typeof ServicesManageRoute
-  ServicesSetupRoute: typeof ServicesSetupRoute
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
-  ServicesGrowRoute: ServicesGrowRoute,
-  ServicesManageRoute: ServicesManageRoute,
-  ServicesSetupRoute: ServicesSetupRoute,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
-
-interface WhoWeServeRouteChildren {
-  WhoWeServeEnteringIndiaRoute: typeof WhoWeServeEnteringIndiaRoute
-  WhoWeServeFundedStartupsRoute: typeof WhoWeServeFundedStartupsRoute
-  WhoWeServeMidMarketRoute: typeof WhoWeServeMidMarketRoute
-}
-
-const WhoWeServeRouteChildren: WhoWeServeRouteChildren = {
-  WhoWeServeEnteringIndiaRoute: WhoWeServeEnteringIndiaRoute,
-  WhoWeServeFundedStartupsRoute: WhoWeServeFundedStartupsRoute,
-  WhoWeServeMidMarketRoute: WhoWeServeMidMarketRoute,
-}
-
-const WhoWeServeRouteWithChildren = WhoWeServeRoute._addFileChildren(
-  WhoWeServeRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -390,9 +364,15 @@ const rootRouteChildren: RootRouteChildren = {
   EngagementModelRoute: EngagementModelRoute,
   GccRoute: GccRoute,
   InsightsRoute: InsightsRoute,
-  ServicesRoute: ServicesRouteWithChildren,
   SettingUpInIndiaRoute: SettingUpInIndiaRoute,
-  WhoWeServeRoute: WhoWeServeRouteWithChildren,
+  ServicesGrowRoute: ServicesGrowRoute,
+  ServicesManageRoute: ServicesManageRoute,
+  ServicesSetupRoute: ServicesSetupRoute,
+  WhoWeServeEnteringIndiaRoute: WhoWeServeEnteringIndiaRoute,
+  WhoWeServeFundedStartupsRoute: WhoWeServeFundedStartupsRoute,
+  WhoWeServeMidMarketRoute: WhoWeServeMidMarketRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
+  WhoWeServeIndexRoute: WhoWeServeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
