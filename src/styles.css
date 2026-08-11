@@ -4,9 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * SimplyBiz design system.
- * Editorial precision: hairline rules, square containers, mono numerals.
- * All colour values are oklch equivalents of the approved brand hex tokens.
+ * SimplyBiz design system, v2.
+ * Predominantly white and neutral. One brand identity colour: the SimplyBiz
+ * green taken directly from the logo mark (lime to forest). No additional
+ * green shades are invented, and no alternative accent hues exist.
  */
 
 @theme inline {
@@ -34,19 +35,24 @@
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-graphite: var(--graphite);
+  --color-brand: var(--brand);
+  --color-brand-lime: var(--brand-lime);
+  --color-brand-deep: var(--brand-deep);
   --color-accent-lit: var(--accent-lit);
   --color-signal: var(--signal);
   --color-rule: var(--rule);
   --color-rule-inverse: var(--rule-inverse);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
 
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-sans: "Inter Tight", system-ui, sans-serif;
+  --font-display: "Sora", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --radius-sm: 2px;
-  --radius-md: 2px;
-  --radius-lg: 2px;
-  --radius-xl: 2px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
 
   --text-step--1: var(--step--1);
   --text-step-0: var(--step-0);
@@ -57,73 +63,82 @@
   --text-step-5: var(--step-5);
   --text-step-6: var(--step-6);
 
-  --shadow-lift: 0 1px 2px rgba(14, 17, 22, 0.06);
-  --shadow-panel: 0 18px 48px -24px rgba(14, 17, 22, 0.45);
+  --shadow-lift: 0 1px 2px rgba(13, 20, 17, 0.05), 0 8px 24px -18px rgba(13, 20, 17, 0.35);
+  --shadow-panel: 0 24px 70px -34px rgba(13, 20, 17, 0.32);
 }
 
 :root {
-  /* Brand palette */
-  --ink: oklch(0.19 0.011 264);
-  --paper: oklch(0.966 0.009 85);
-  --graphite: oklch(0.318 0.011 258);
-  --accent: oklch(0.394 0.073 168);
-  --accent-lit: oklch(0.633 0.116 168);
-  --signal: oklch(0.518 0.135 45);
-  --rule: rgba(14, 17, 22, 0.12);
-  --rule-inverse: rgba(246, 244, 239, 0.16);
+  /* SimplyBiz brand green, sampled from the logo mark */
+  --brand-lime: #8cbe3f;
+  --brand: #4b8a3c;
+  --brand-deep: #2c6b3c;
+  --brand-gradient: linear-gradient(135deg, var(--brand-lime) 0%, var(--brand) 48%, var(--brand-deep) 100%);
+
+  --ink: #0d1411;
+  --paper: #ffffff;
+  --surface: #f7f9f6;
+  --surface-2: #eef2ec;
+  --graphite: #38423d;
+
+  --accent: var(--brand-deep);
+  --accent-lit: var(--brand);
+  --signal: #b4531a;
+  --rule: rgba(13, 20, 17, 0.09);
+  --rule-inverse: rgba(255, 255, 255, 0.14);
 
   /* Fluid type scale, 8 steps */
-  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
+  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.85rem);
   --step-0: clamp(0.95rem, 0.92rem + 0.16vw, 1.05rem);
-  --step-1: clamp(1.12rem, 1.05rem + 0.34vw, 1.32rem);
-  --step-2: clamp(1.35rem, 1.2rem + 0.72vw, 1.78rem);
-  --step-3: clamp(1.7rem, 1.4rem + 1.4vw, 2.5rem);
-  --step-4: clamp(2.1rem, 1.6rem + 2.4vw, 3.5rem);
-  --step-5: clamp(2.6rem, 1.7rem + 4.2vw, 5rem);
-  --step-6: clamp(3.1rem, 1.7rem + 6.4vw, 7rem);
+  --step-1: clamp(1.1rem, 1.03rem + 0.34vw, 1.3rem);
+  --step-2: clamp(1.3rem, 1.16rem + 0.68vw, 1.7rem);
+  --step-3: clamp(1.6rem, 1.32rem + 1.32vw, 2.35rem);
+  --step-4: clamp(2rem, 1.55rem + 2.1vw, 3.1rem);
+  --step-5: clamp(2.5rem, 1.75rem + 3.4vw, 4.35rem);
+  --step-6: clamp(2.9rem, 1.7rem + 5.4vw, 5.8rem);
 
   /* shadcn mapping */
-  --radius: 2px;
+  --radius: 12px;
   --background: var(--paper);
   --foreground: var(--graphite);
   --card: var(--paper);
   --card-foreground: var(--graphite);
   --popover: var(--paper);
   --popover-foreground: var(--graphite);
-  --primary: var(--accent);
-  --primary-foreground: var(--paper);
-  --secondary: oklch(0.93 0.008 85);
+  --primary: var(--brand-deep);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface);
   --secondary-foreground: var(--ink);
-  --muted: oklch(0.93 0.008 85);
-  --muted-foreground: oklch(0.52 0.011 258);
-  --accent-foreground: var(--paper);
+  --muted: var(--surface);
+  --muted-foreground: #6b756f;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.55 0.2 27);
-  --destructive-foreground: var(--paper);
+  --destructive-foreground: #ffffff;
   --border: var(--rule);
   --input: var(--rule);
-  --ring: var(--accent);
+  --ring: var(--brand);
 }
 
 .dark {
-  --paper: oklch(0.19 0.011 264);
-  --ink: oklch(0.15 0.01 264);
-  --graphite: oklch(0.92 0.006 85);
-  --rule: rgba(246, 244, 239, 0.16);
-  --rule-inverse: rgba(246, 244, 239, 0.16);
-  --background: oklch(0.19 0.011 264);
-  --foreground: oklch(0.94 0.005 85);
-  --card: oklch(0.22 0.011 264);
-  --card-foreground: oklch(0.94 0.005 85);
-  --popover: oklch(0.22 0.011 264);
-  --popover-foreground: oklch(0.94 0.005 85);
-  --primary: var(--accent-lit);
-  --primary-foreground: oklch(0.15 0.01 264);
-  --secondary: oklch(0.26 0.012 264);
-  --secondary-foreground: oklch(0.94 0.005 85);
-  --muted: oklch(0.26 0.012 264);
-  --muted-foreground: oklch(0.72 0.008 258);
-  --border: rgba(246, 244, 239, 0.16);
-  --input: rgba(246, 244, 239, 0.2);
+  --paper: #0d1411;
+  --ink: #070b09;
+  --surface: #121a16;
+  --surface-2: #18211c;
+  --graphite: #e6ebe7;
+  --rule: rgba(255, 255, 255, 0.12);
+  --background: #0d1411;
+  --foreground: #e6ebe7;
+  --card: #121a16;
+  --card-foreground: #e6ebe7;
+  --popover: #121a16;
+  --popover-foreground: #e6ebe7;
+  --primary: var(--brand-lime);
+  --primary-foreground: #0d1411;
+  --secondary: #18211c;
+  --secondary-foreground: #e6ebe7;
+  --muted: #18211c;
+  --muted-foreground: #9aa8a0;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.16);
 }
 
 @layer base {
@@ -133,6 +148,7 @@
 
   html {
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -140,7 +156,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-size: var(--step-0);
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   h1 {
@@ -156,25 +172,32 @@
   }
 
   h1,
-  h2 {
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
-    font-weight: 400;
-    line-height: 1.02;
-    letter-spacing: -0.02em;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.06;
+    letter-spacing: -0.028em;
   }
 
   h3,
   h4 {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--brand-lime) 40%, transparent);
+    color: var(--ink);
   }
 }
 
 /* Structural utilities */
 @utility container-editorial {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1240px;
   margin-inline: auto;
   padding-inline: 1.25rem;
   @media (min-width: 1024px) {
@@ -183,9 +206,9 @@
 }
 
 @utility section-pad {
-  padding-block: 3.5rem;
+  padding-block: 4rem;
   @media (min-width: 1024px) {
-    padding-block: 96px;
+    padding-block: 112px;
   }
 }
 
@@ -198,13 +221,65 @@
 }
 
 @utility num {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-variant-numeric: tabular-nums lining-nums;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: -0.04em;
 }
 
 @utility hairline {
   border-top: 1px solid var(--color-rule);
+}
+
+/* Brand expression */
+@utility brand-gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility brand-gradient-bg {
+  background: var(--brand-gradient);
+}
+
+@utility surface-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.4s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--brand) 38%, transparent);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility glass-panel {
+  background: color-mix(in srgb, var(--paper) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--rule);
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(13, 20, 17, 0.09) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+@utility pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  color: var(--graphite);
 }
 
 @media (prefers-reduced-motion: reduce) {
