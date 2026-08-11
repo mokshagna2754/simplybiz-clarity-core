@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import logo from "@/assets/simplybiz-logo.png.asset.json";
 import { MagneticCTA } from "@/components/motion/MagneticCTA";
 
@@ -40,7 +40,7 @@ export function Header() {
   const reduced = useReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -53,56 +53,51 @@ export function Header() {
     };
   }, [mobile]);
 
-  const dark = !scrolled;
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "border-b border-[var(--rule)] bg-[var(--paper)]" : "border-b border-transparent bg-transparent"
-      }`}
-      onMouseLeave={() => setOpen(null)}
-    >
-      <div className="container-editorial flex h-20 items-center justify-between gap-6">
-        <Link to="/" className="flex items-center" aria-label="SimplyBiz home">
-          <img
-            src={logo.url}
-            alt="SimplyBiz"
-            width={160}
-            height={42}
-            className={`h-8 w-auto ${dark ? "brightness-0 invert" : ""}`}
-          />
-        </Link>
-
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
-          {NAV.map((item) => (
-            <div key={item.label} onMouseEnter={() => setOpen(item.panel ? item.label : null)}>
-              <Link
-                to={item.to}
-                className={`text-[0.875rem] transition-colors ${
-                  dark ? "text-[var(--paper)]/85 hover:text-[var(--paper)]" : "text-[var(--graphite)] hover:text-[var(--accent)]"
-                }`}
-                activeProps={{ className: "underline underline-offset-8 decoration-[var(--accent-lit)]" }}
-              >
-                {item.label}
-              </Link>
-            </div>
-          ))}
-        </nav>
-
-        <div className="hidden lg:block">
-          <MagneticCTA to="/contact" variant={dark ? "inverse" : "solid"}>
-            Talk to us
-          </MagneticCTA>
-        </div>
-
-        <button
-          type="button"
-          className={`lg:hidden ${dark ? "text-[var(--paper)]" : "text-[var(--ink)]"}`}
-          aria-label="Open menu"
-          onClick={() => setMobile(true)}
+    <header className="fixed inset-x-0 top-0 z-50 pt-3" onMouseLeave={() => setOpen(null)}>
+      <div className="container-editorial">
+        <div
+          className={`flex h-16 items-center justify-between gap-6 rounded-full px-4 pl-5 transition-all duration-300 lg:px-3 lg:pl-6 ${
+            scrolled || open
+              ? "glass-panel shadow-[0_10px_40px_-28px_rgba(13,20,17,0.5)]"
+              : "border border-transparent bg-transparent"
+          }`}
         >
-          <Menu size={22} />
-        </button>
+          <Link to="/" className="flex items-center" aria-label="SimplyBiz home">
+            <img src={logo.url} alt="SimplyBiz" width={160} height={42} className="h-7 w-auto" />
+          </Link>
+
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+            {NAV.map((item) => (
+              <div key={item.label} onMouseEnter={() => setOpen(item.panel ? item.label : null)}>
+                <Link
+                  to={item.to}
+                  className={`rounded-full px-3 py-2 text-[0.85rem] font-medium text-[var(--graphite)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--ink)] ${
+                    open === item.label ? "bg-[var(--surface)] text-[var(--ink)]" : ""
+                  }`}
+                  activeProps={{ className: "text-[var(--brand-deep)]" }}
+                >
+                  {item.label}
+                </Link>
+              </div>
+            ))}
+          </nav>
+
+          <div className="hidden lg:block">
+            <MagneticCTA to="/contact" className="px-5 py-2.5">
+              Talk to us
+            </MagneticCTA>
+          </div>
+
+          <button
+            type="button"
+            className="text-[var(--ink)] lg:hidden"
+            aria-label="Open menu"
+            onClick={() => setMobile(true)}
+          >
+            <Menu size={22} />
+          </button>
+        </div>
       </div>
 
       {/* Desktop mega panel */}
@@ -110,24 +105,28 @@ export function Header() {
         {open && (
           <motion.div
             key={open}
-            initial={reduced ? false : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={reduced ? false : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden overflow-hidden bg-[var(--ink)] lg:block"
+            className="container-editorial hidden pt-2 lg:block"
           >
-            <div className="container-editorial grid grid-cols-3 gap-px py-10">
+            <div className="glass-panel grid grid-cols-3 gap-2 rounded-3xl p-3 shadow-[var(--shadow-panel)]">
               {NAV.find((n) => n.label === open)?.panel?.map((p) => (
                 <Link
                   key={p.to}
                   to={p.to}
                   onClick={() => setOpen(null)}
-                  className="group border-l border-[var(--rule-inverse)] px-6"
+                  className="group rounded-2xl p-5 transition-colors hover:bg-[var(--surface)]"
                 >
-                  <span className="mono-label text-[var(--accent-lit)]">{p.label}</span>
-                  <p className="mt-3 max-w-xs text-[var(--paper)]/70 transition-colors group-hover:text-[var(--paper)]">
-                    {p.note}
-                  </p>
+                  <span className="flex items-center gap-1.5 text-[0.95rem] font-semibold text-[var(--ink)]">
+                    {p.label}
+                    <ArrowUpRight
+                      size={15}
+                      className="text-[var(--brand)] opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
+                    />
+                  </span>
+                  <p className="mt-1.5 max-w-xs text-[0.85rem] text-[var(--muted-foreground)]">{p.note}</p>
                 </Link>
               ))}
             </div>
@@ -143,39 +142,39 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex flex-col bg-[var(--ink)] lg:hidden"
+            className="fixed inset-0 z-50 flex flex-col bg-[var(--paper)] lg:hidden"
           >
             <div className="container-editorial flex h-20 items-center justify-between">
-              <span className="mono-label text-[var(--paper)]/60">Menu</span>
-              <button type="button" aria-label="Close menu" onClick={() => setMobile(false)} className="text-[var(--paper)]">
+              <img src={logo.url} alt="SimplyBiz" width={160} height={42} className="h-7 w-auto" />
+              <button type="button" aria-label="Close menu" onClick={() => setMobile(false)} className="text-[var(--ink)]">
                 <X size={22} />
               </button>
             </div>
-            <div className="container-editorial flex flex-1 flex-col gap-1 overflow-y-auto pb-16">
+            <div className="container-editorial flex flex-1 flex-col overflow-y-auto pb-16">
               {NAV.map((item, i) => (
                 <motion.div
                   key={item.label}
                   initial={reduced ? false : { opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="border-b border-[var(--rule-inverse)] py-4"
+                  className="border-b border-[var(--rule)] py-4"
                 >
                   <Link
                     to={item.to}
                     onClick={() => setMobile(false)}
-                    className="font-display text-[var(--paper)]"
-                    style={{ fontFamily: "var(--font-display)", fontSize: "var(--step-2)" }}
+                    className="text-[var(--ink)]"
+                    style={{ fontFamily: "var(--font-display)", fontSize: "var(--step-2)", fontWeight: 600 }}
                   >
                     {item.label}
                   </Link>
                   {item.panel && (
-                    <div className="mt-3 flex flex-wrap gap-4">
+                    <div className="mt-3 flex flex-wrap gap-2">
                       {item.panel.map((p) => (
                         <Link
                           key={p.to}
                           to={p.to}
                           onClick={() => setMobile(false)}
-                          className="mono-label text-[var(--accent-lit)]"
+                          className="pill text-[var(--brand-deep)]"
                         >
                           {p.label}
                         </Link>
@@ -185,9 +184,7 @@ export function Header() {
                 </motion.div>
               ))}
               <div className="pt-8">
-                <MagneticCTA to="/contact" variant="solid">
-                  Talk to us
-                </MagneticCTA>
+                <MagneticCTA to="/contact">Talk to us</MagneticCTA>
               </div>
             </div>
           </motion.div>
