@@ -35,7 +35,7 @@ export function BrandAurora() {
 
       <svg
         viewBox="0 0 1200 600"
-        className="absolute inset-0 h-full w-full opacity-[0.5]"
+        className="absolute inset-0 h-full w-full opacity-[0.45] [mask-image:linear-gradient(to_bottom,transparent_0%,black_55%,black_100%)]"
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
@@ -45,7 +45,7 @@ export function BrandAurora() {
           </linearGradient>
         </defs>
         <motion.path
-          d="M60 470 C 320 470, 330 200, 600 200 S 900 380, 1150 130"
+          d="M40 560 C 300 560, 340 320, 620 320 S 920 420, 1180 250"
           fill="none"
           stroke="url(#sb-corridor)"
           strokeWidth="1.5"
@@ -55,9 +55,9 @@ export function BrandAurora() {
           transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
         />
         {[
-          { cx: 60, cy: 470, label: "ORIGIN" },
-          { cx: 600, cy: 200, label: "SIMPLYBIZ" },
-          { cx: 1150, cy: 130, label: "INDIA" },
+          { cx: 40, cy: 560, label: "ORIGIN" },
+          { cx: 620, cy: 320, label: "SIMPLYBIZ" },
+          { cx: 1180, cy: 250, label: "INDIA" },
         ].map((n, i) => (
           <motion.g
             key={n.label}
