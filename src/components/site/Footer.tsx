@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { DataFlag } from "@/components/DataFlag";
+import logo from "@/assets/simplybiz-logo.png.asset.json";
 
 const OFFICES = ["Hyderabad", "Delhi", "Bengaluru", "Mumbai"];
 
@@ -35,12 +36,42 @@ const SITEMAP: { title: string; links: { label: string; to: string }[] }[] = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--rule)] bg-[var(--paper)]">
-      <div className="container-editorial section-pad">
-        <div className="grid gap-10 border-b border-[var(--rule)] pb-12 md:grid-cols-4">
+    <footer className="border-t border-[var(--rule)] bg-[var(--surface)]">
+      <div className="container-editorial py-16 lg:py-24">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
+          <div>
+            <img src={logo.url} alt="SimplyBiz" width={180} height={48} className="h-8 w-auto" />
+            <p className="mt-4 max-w-xs text-[0.95rem] text-[var(--muted-foreground)]">
+              Simplify | Scale up | Succeed
+            </p>
+            <p className="mono-label mt-6 text-[var(--muted-foreground)]">Founded May 2022, Hyderabad</p>
+          </div>
+
+          <div className="grid gap-10 sm:grid-cols-3">
+            {SITEMAP.map((col) => (
+              <nav key={col.title} aria-label={col.title}>
+                <p className="mono-label text-[var(--ink)]">{col.title}</p>
+                <ul className="mt-4 space-y-2.5">
+                  {col.links.map((l) => (
+                    <li key={l.to}>
+                      <Link
+                        to={l.to}
+                        className="text-[0.9rem] text-[var(--muted-foreground)] transition-colors hover:text-[var(--brand-deep)]"
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-4 border-t border-[var(--rule)] pt-10 sm:grid-cols-2 lg:grid-cols-4">
           {OFFICES.map((city) => (
-            <div key={city}>
-              <p className="mono-label text-[var(--accent)]">{city}</p>
+            <div key={city} className="rounded-2xl border border-[var(--rule)] bg-[var(--paper)] p-5">
+              <p className="mono-label text-[var(--brand-deep)]">{city}</p>
               <div className="mt-3">
                 <DataFlag kind="NEEDS DATA" text={`${city} address, phone, email`} />
               </div>
@@ -48,38 +79,14 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="grid gap-10 border-b border-[var(--rule)] py-12 md:grid-cols-4">
-          <div>
-            <p className="font-display text-[var(--ink)]" style={{ fontFamily: "var(--font-display)", fontSize: "var(--step-2)" }}>
-              SimplyBiz
-            </p>
-            <p className="mono-label mt-2 text-[var(--muted-foreground)]">Simplify | Scale up | Succeed</p>
-            <p className="mono-label mt-4 text-[var(--muted-foreground)]">Founded May 2022, Hyderabad</p>
-          </div>
-          {SITEMAP.map((col) => (
-            <nav key={col.title} aria-label={col.title}>
-              <p className="mono-label text-[var(--muted-foreground)]">{col.title}</p>
-              <ul className="mt-4 space-y-2">
-                {col.links.map((l) => (
-                  <li key={l.to}>
-                    <Link to={l.to} className="text-[0.9rem] text-[var(--graphite)] hover:text-[var(--accent)]">
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
-        </div>
-
-        <div className="grid gap-8 border-b border-[var(--rule)] py-12 md:grid-cols-2">
-          <div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-[var(--rule)] bg-[var(--paper)] p-5">
             <p className="mono-label text-[var(--muted-foreground)]">Memberships</p>
             <div className="mt-3">
               <DataFlag kind="NEEDS DATA" text="membership names and category, verification pending" />
             </div>
           </div>
-          <div>
+          <div className="rounded-2xl border border-[var(--rule)] bg-[var(--paper)] p-5">
             <p className="mono-label text-[var(--muted-foreground)]">Awards</p>
             <div className="mt-3">
               <DataFlag kind="NEEDS DATA" text="award names and years, awarding body confirmation" />
@@ -87,7 +94,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-8">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--rule)] pt-8">
           <p className="mono-label text-[var(--muted-foreground)]">
             SimplyBiz Private Limited. All rights reserved.
           </p>
