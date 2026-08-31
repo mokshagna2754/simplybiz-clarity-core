@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Building2, ClipboardCheck, TrendingUp } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Building2, ClipboardCheck, TrendingUp } from "lucide-react";
 import { Accordion } from "@/components/ui/accordion";
 import { DataFlag } from "@/components/DataFlag";
 import { RevealBlock, RevealText } from "@/components/motion/Reveal";
@@ -70,60 +70,43 @@ function Home() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="relative isolate overflow-hidden bg-[var(--paper)] pb-20 pt-36 lg:pb-28 lg:pt-44">
+      <section className="relative isolate overflow-hidden border-b border-[var(--rule)] bg-[var(--paper)] pb-16 pt-32 lg:pb-24 lg:pt-44">
         <BrandAurora />
         <div className="container-editorial relative">
-          <RevealBlock>
-            <SectionLabel>SimplyBiz, since May 2022, Hyderabad</SectionLabel>
-          </RevealBlock>
-
-          <RevealText
-            as="h1"
-            text="Your Indian entity, set up correctly and run on time."
-            className="mt-7 max-w-4xl"
-          />
-
-          <RevealBlock delay={0.3} className="mt-7 max-w-xl space-y-5">
-            <p className="text-[var(--muted-foreground)]" style={{ fontSize: "var(--step-1)" }}>
-              Finance, legal, compliance and accounting for companies operating in India.
-            </p>
-            <DataFlag kind="CONFIRM" text="approved hero proposition line, one sentence, signed off by SimplyBiz" />
-          </RevealBlock>
-
-          <RevealBlock delay={0.45} className="mt-9 flex flex-wrap items-center gap-3">
-            <MagneticCTA to="/contact">Talk to us</MagneticCTA>
-            <MagneticCTA to="/setting-up-in-india" variant="ghost">
-              Setting up in India
-            </MagneticCTA>
-          </RevealBlock>
-
-          {/* Floating summary panel */}
-          <RevealBlock delay={0.6} className="mt-16">
-            <div className="glass-panel grid gap-px overflow-hidden rounded-3xl bg-[var(--rule)] shadow-[var(--shadow-panel)] sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                { k: "Clients assisted monthly", v: 150 },
-                { k: "Professionals on the team", v: 30 },
-                { k: "Years of collective experience", v: 300 },
-                { k: "Entities incorporated", v: 30 },
-              ].map((s) => (
-                <div key={s.k} className="bg-[var(--paper)] p-6">
-                  <p className="num text-[var(--ink)]" style={{ fontSize: "var(--step-3)" }}>
-                    <CountUp value={s.v} suffix="+" />
-                  </p>
-                  <p className="mt-2 text-[0.82rem] text-[var(--muted-foreground)]">{s.k}</p>
-                </div>
-              ))}
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-8">
+            <div className="lg:col-span-8">
+              <RevealBlock>
+                <SectionLabel>SimplyBiz, since May 2022, Hyderabad</SectionLabel>
+              </RevealBlock>
+              <RevealText as="h1" text="Your Indian entity, set up correctly and run on time." className="mt-8 max-w-5xl" />
             </div>
-          </RevealBlock>
-
-          <RevealBlock delay={0.7} className="mt-8 flex flex-wrap items-center gap-2">
-            <span className="mono-label text-[var(--muted-foreground)]">Offices</span>
-            {OFFICES.map((o) => (
-              <span key={o} className="pill">
-                {o}
-              </span>
+            <RevealBlock delay={0.25} className="lg:col-span-4 lg:pb-2">
+              <p className="max-w-sm text-[1.05rem] leading-relaxed text-[var(--graphite)]">
+                Finance, legal, compliance and accounting for companies operating in India.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <MagneticCTA to="/contact">Talk to us</MagneticCTA>
+                <MagneticCTA to="/setting-up-in-india" variant="ghost">Explore India setup</MagneticCTA>
+              </div>
+            </RevealBlock>
+          </div>
+          <div className="mt-16 grid gap-px border-y border-[var(--rule)] bg-[var(--rule)] sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { k: "Clients assisted monthly", v: 150 },
+              { k: "Professionals on the team", v: 30 },
+              { k: "Years of collective experience", v: 300 },
+              { k: "Entities incorporated", v: 30 },
+            ].map((s) => (
+              <div key={s.k} className="bg-[var(--paper)] px-5 py-6 lg:px-6">
+                <p className="num text-[var(--ink)] text-[var(--step-3)]"><CountUp value={s.v} suffix="+" /></p>
+                <p className="mt-2 text-[0.75rem] uppercase tracking-[0.08em] text-[var(--muted-foreground)]">{s.k}</p>
+              </div>
             ))}
-          </RevealBlock>
+          </div>
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
+            <span className="mono-label text-[var(--muted-foreground)]">Offices</span>
+            {OFFICES.map((o) => <span key={o} className="text-[0.85rem] text-[var(--graphite)]">{o}</span>)}
+          </div>
         </div>
       </section>
 
@@ -132,40 +115,36 @@ function Home() {
 
       {/* 2. Lifecycle */}
       <section className="container-editorial section-pad">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-2xl">
+        <div className="grid gap-8 border-b border-[var(--rule)] pb-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-8">
             <SectionLabel>The lifecycle</SectionLabel>
             <RevealText as="h2" text="Three stages, one accountable team." className="mt-5" />
           </div>
-          <Link
-            to="/services"
-            className="group inline-flex items-center gap-1.5 text-[0.9rem] font-semibold text-[var(--brand-deep)]"
-          >
-            All services
-            <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <Link to="/services" className="group inline-flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-[var(--brand-deep)] lg:col-span-4 lg:justify-end">
+            All services <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-10 grid gap-px border-b border-l border-[var(--rule)] bg-[var(--rule)] md:grid-cols-3">
           {LIFECYCLE.map((item, i) => (
             <RevealBlock key={item.key} delay={i * 0.08}>
-              <Link to={item.to} className="surface-card group relative block h-full overflow-hidden p-7">
+              <Link to={item.to} className="group relative block h-full bg-[var(--paper)] p-7 transition-colors hover:bg-[var(--surface)] lg:p-8">
                 <span
                   aria-hidden="true"
                   className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 brand-gradient-bg transition-transform duration-500 group-hover:scale-x-100"
                 />
                 <div className="flex items-center justify-between">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--surface)] text-[var(--brand-deep)] transition-colors duration-300 group-hover:bg-[color-mix(in_srgb,var(--brand-lime)_18%,transparent)]">
+                  <span className="flex h-10 w-10 items-center justify-center border border-[var(--rule)] bg-[var(--surface)] text-[var(--brand-deep)] transition-colors duration-300 group-hover:bg-[var(--surface-2)]">
                     <item.icon size={19} strokeWidth={1.7} />
                   </span>
                   <span className="mono-label text-[var(--muted-foreground)]">0{i + 1}</span>
                 </div>
-                <h3 className="mt-7 text-[var(--ink)]">{item.key}</h3>
+                <h3 className="mt-10 text-[var(--ink)]">{item.key}</h3>
                 <div className="mt-4">
                   <DataFlag kind="NEEDS DATA" text={`${item.key} description, one line from the service spine`} />
                 </div>
-                <span className="mt-6 flex items-center gap-1.5 text-[0.85rem] font-semibold text-[var(--brand-deep)] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <DataFlag kind="NEEDS DATA" text="service count" />
+                <span className="mt-8 flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-[var(--brand-deep)] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  View service <ArrowRight size={15} />
                 </span>
               </Link>
             </RevealBlock>
@@ -177,16 +156,15 @@ function Home() {
       <section className="container-editorial section-pad pt-0">
         <SectionLabel>Find your route</SectionLabel>
         <RevealText as="h2" text="Are you..." className="mt-5" />
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-10 grid gap-px border-b border-l border-[var(--rule)] bg-[var(--rule)] md:grid-cols-3">
           {AUDIENCES.map((a, i) => (
             <RevealBlock key={a.to} delay={i * 0.08}>
               <Link
                 to={a.to}
-                className="surface-card group relative block h-full overflow-hidden bg-[var(--surface)] p-7 transition-colors duration-500 hover:bg-[var(--ink)]"
+                className="group relative block h-full overflow-hidden bg-[var(--surface)] p-7 transition-colors duration-500 hover:bg-[var(--ink)]"
               >
                 <p
-                  className="text-[var(--ink)] transition-colors duration-500 group-hover:text-[var(--paper)]"
-                  style={{ fontFamily: "var(--font-display)", fontSize: "var(--step-2)", fontWeight: 600, lineHeight: 1.15 }}
+                   className="text-[var(--ink)] transition-colors duration-500 group-hover:text-[var(--paper)]"
                 >
                   {a.label}
                 </p>
@@ -205,7 +183,7 @@ function Home() {
 
       {/* 4. Proof band */}
       <section className="container-editorial pb-16 lg:pb-24">
-        <div className="relative overflow-hidden rounded-[28px] bg-[var(--ink)] px-6 py-14 lg:px-14 lg:py-20">
+        <div className="relative overflow-hidden bg-[var(--ink)] px-6 py-14 lg:px-14 lg:py-20">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -right-20 -top-24 h-[28rem] w-[28rem] rounded-full blur-[120px]"
@@ -219,14 +197,14 @@ function Home() {
             <div className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {PROOF.map((p) => (
                 <div key={p.label} className="border-t border-[var(--rule-inverse)] pt-5">
-                  <p className="num text-[var(--paper)]" style={{ fontSize: "var(--step-4)" }}>
+            <p className="num text-[var(--paper)] text-[var(--step-4)]">
                     <CountUp value={p.value} suffix={p.suffix} />
                   </p>
-                  <p className="mt-2 text-[0.88rem] text-white/60">{p.label}</p>
+                  <p className="mt-2 text-[0.88rem] text-[var(--rule-inverse)]">{p.label}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-12 max-w-2xl text-[0.9rem] text-white/55">
+            <p className="mt-12 max-w-2xl text-[0.9rem] text-[var(--rule-inverse)]">
               Team: Chartered Accountants, Company Secretaries, corporate lawyers, management graduates.
             </p>
           </div>
@@ -329,7 +307,7 @@ function Home() {
 
       {/* 10. Closing CTA */}
       <section className="container-editorial pb-20 lg:pb-28">
-        <div className="relative overflow-hidden rounded-[28px] bg-[var(--ink)] px-6 py-16 text-center lg:px-14 lg:py-24">
+        <div className="relative overflow-hidden bg-[var(--ink)] px-6 py-16 text-center lg:px-14 lg:py-24">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 bottom-[-14rem] mx-auto h-[26rem] w-[42rem] rounded-full blur-[130px]"

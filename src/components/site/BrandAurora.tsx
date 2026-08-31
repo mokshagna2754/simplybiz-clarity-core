@@ -10,32 +10,12 @@ export function BrandAurora() {
 
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="dot-grid absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_at_50%_20%,black,transparent_72%)]" />
-
-      <motion.div
-        initial={reduced ? false : { opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute -right-40 -top-40 h-[46rem] w-[46rem] rounded-full blur-[120px]"
-        style={{
-          background:
-            "radial-gradient(circle at 40% 40%, color-mix(in srgb, var(--brand-lime) 34%, transparent), transparent 62%)",
-        }}
-      />
-      <motion.div
-        initial={reduced ? false : { opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute -bottom-56 -left-32 h-[40rem] w-[40rem] rounded-full blur-[130px]"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--brand-deep) 26%, transparent), transparent 62%)",
-        }}
-      />
+      <div className="dot-grid absolute inset-0 opacity-35 [mask-image:linear-gradient(to_bottom,black,transparent_70%)]" />
+      <div className="absolute right-[-12rem] top-[-18rem] h-[42rem] w-[42rem] rounded-full bg-[color-mix(in_srgb,var(--brand-lime)_12%,transparent)] blur-[100px]" />
 
       <svg
         viewBox="0 0 1200 600"
-        className="absolute inset-0 h-full w-full opacity-[0.45] [mask-image:linear-gradient(to_bottom,transparent_0%,black_55%,black_100%)]"
+        className="absolute inset-0 h-full w-full opacity-[0.22] [mask-image:linear-gradient(to_bottom,transparent_0%,black_35%,black_100%)]"
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>

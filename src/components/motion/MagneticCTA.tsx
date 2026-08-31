@@ -12,15 +12,15 @@ type MagneticCTAProps = {
 } & Omit<ComponentProps<typeof Link>, "to" | "children" | "className">;
 
 const base =
-  "group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-3 text-[0.9rem] font-semibold transition-all duration-300";
+  "group relative inline-flex items-center gap-2 overflow-hidden rounded-[2px] px-5 py-3 text-[0.78rem] font-semibold uppercase tracking-[0.08em] transition-all duration-300";
 
 const variants = {
   solid:
-    "text-[var(--paper)] brand-gradient-bg shadow-[0_10px_30px_-14px_color-mix(in_srgb,var(--brand-deep)_75%,transparent)] hover:shadow-[0_16px_40px_-14px_color-mix(in_srgb,var(--brand-deep)_75%,transparent)]",
+    "text-[var(--paper)] brand-gradient-bg shadow-[var(--shadow-lift)] hover:brightness-95",
   ghost:
-    "border border-[var(--rule)] bg-[var(--paper)] text-[var(--ink)] hover:border-[color-mix(in_srgb,var(--brand)_45%,transparent)] hover:bg-[var(--surface)]",
+    "border border-[var(--ink)] bg-transparent text-[var(--ink)] hover:border-[var(--brand-deep)] hover:bg-[var(--surface)]",
   inverse:
-    "border border-[var(--rule-inverse)] bg-white/5 text-[var(--paper)] backdrop-blur-sm hover:border-[color-mix(in_srgb,var(--brand-lime)_60%,transparent)] hover:bg-white/10",
+    "border border-[var(--rule-inverse)] bg-transparent text-[var(--paper)] hover:border-[var(--brand-lime)] hover:bg-[var(--surface-2)]/10",
 };
 
 export function MagneticCTA({

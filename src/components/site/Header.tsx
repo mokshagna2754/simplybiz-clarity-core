@@ -54,26 +54,26 @@ export function Header() {
   }, [mobile]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 pt-3" onMouseLeave={() => setOpen(null)}>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-[var(--paper)]/90 pt-0 backdrop-blur-md transition-colors duration-300" onMouseLeave={() => setOpen(null)}>
       <div className="container-editorial">
         <div
-          className={`flex h-16 items-center justify-between gap-6 rounded-full px-4 pl-5 transition-all duration-300 lg:px-3 lg:pl-6 ${
+          className={`grid h-[4.75rem] grid-cols-[auto_1fr_auto] items-center gap-6 transition-all duration-300 ${
             scrolled || open
-              ? "glass-panel shadow-[0_10px_40px_-28px_rgba(13,20,17,0.5)]"
-              : "border border-transparent bg-transparent"
+              ? ""
+              : ""
           }`}
         >
           <Link to="/" className="flex items-center" aria-label="SimplyBiz home">
-            <img src={logo.url} alt="SimplyBiz" width={160} height={42} className="h-7 w-auto" />
+            <img src={logo.url} alt="SimplyBiz" width={160} height={42} className="h-8 w-auto" />
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center justify-center gap-1 lg:flex" aria-label="Primary">
             {NAV.map((item) => (
               <div key={item.label} onMouseEnter={() => setOpen(item.panel ? item.label : null)}>
                 <Link
                   to={item.to}
-                  className={`rounded-full px-3 py-2 text-[0.85rem] font-medium text-[var(--graphite)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--ink)] ${
-                    open === item.label ? "bg-[var(--surface)] text-[var(--ink)]" : ""
+                    className={`rounded-[2px] px-3 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-[var(--graphite)] transition-colors hover:text-[var(--brand-deep)] ${
+                    open === item.label ? "text-[var(--brand-deep)]" : ""
                   }`}
                   activeProps={{ className: "text-[var(--brand-deep)]" }}
                 >
@@ -91,7 +91,7 @@ export function Header() {
 
           <button
             type="button"
-            className="text-[var(--ink)] lg:hidden"
+            className="justify-self-end text-[var(--ink)] lg:hidden"
             aria-label="Open menu"
             onClick={() => setMobile(true)}
           >
@@ -111,13 +111,13 @@ export function Header() {
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="container-editorial hidden pt-2 lg:block"
           >
-            <div className="glass-panel grid grid-cols-3 gap-2 rounded-3xl p-3 shadow-[var(--shadow-panel)]">
+            <div className="glass-panel grid grid-cols-3 gap-px bg-[var(--rule)] p-px shadow-[var(--shadow-panel)]">
               {NAV.find((n) => n.label === open)?.panel?.map((p) => (
                 <Link
                   key={p.to}
                   to={p.to}
                   onClick={() => setOpen(null)}
-                  className="group rounded-2xl p-5 transition-colors hover:bg-[var(--surface)]"
+                  className="group bg-[var(--paper)] p-5 transition-colors hover:bg-[var(--surface)]"
                 >
                   <span className="flex items-center gap-1.5 text-[0.95rem] font-semibold text-[var(--ink)]">
                     {p.label}
